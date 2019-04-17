@@ -28,6 +28,9 @@ if __name__ == '__main__':
         class_1_averages.append(current_c1_average/40)
         class_2_averages.append(current_c2_average/40)
 
-    plt.plot(class_1_averages)
-    plt.plot(class_2_averages)
-    plt.show()
+    l1, = plt.plot(class_1_averages, label='Book')
+    l2, = plt.plot(class_2_averages, label='Plastic Case')
+    plt.legend(handles=[l1, l2])
+    plt.xlabel('Channel Number')
+    plt.ylabel('Mean Value')
+    plt.savefig('binary_visualisation')
