@@ -44,6 +44,7 @@ if __name__ == '__main__':
         class_4_averages.append(current_c4_average/40)
         class_5_averages.append(current_c5_average/40)
 
+    plt.title('Average channel values for each class in the mutliclass feature file')
     l1, = plt.plot(class_1_averages, label='Air')
     l2, = plt.plot(class_2_averages, label='Book')
     l3, = plt.plot(class_3_averages, label='Hand')

@@ -76,7 +76,7 @@ def train_binary_nn(X, y):
 
 
 def train_multiclass_nn(X, y):
-    layer_sizes = [1, 2, 5, 10, 20, 50, 100, 150, 200, 500, 1000]
+    layer_sizes = [1, 2, 5, 10, 20, 50, 100, 150, 200, 500]
     learning_inits = [1, 0.5, 0.2, 0.1, 0.05, 0.01, 0.001]
     scores = []
     sizes_to_plot = []
@@ -109,7 +109,6 @@ def train_multiclass_nn(X, y):
     return best_clf
 
 
-
 def nn_predict(clf, to_predict):
     predictions = clf.predict(to_predict)
     print('NN Predicted:\n{}'.format(predictions))
@@ -123,9 +122,11 @@ def score_classifier(clf, X, y):
 
 
 def cross_val_score_classifier(clf, X, y):
-    scores = cross_val_score(clf, X, y, cv=5)
+    scores = cross_val_score(clf, X, y, cv=10)
+    print('All scores:')
     print(scores)
     average = scores.mean()
+    print('Average score:')
     print(average)
     return average
 
@@ -139,16 +140,23 @@ if __name__ == "__main__":
     print('============================================')
     print('Training SVM...')
     bin_svc_clf = train_binary_svc(X, y)
+
+    print('============================================')
     print('Scoring SVM...')
+    print('Total score on trained data:')
     score_classifier(bin_svc_clf, X, y)
+    print('Cross validated score of the classifier:')
     cross_val_score_classifier(bin_svc_clf, X, y)
-    svc_predict(bin_svc_clf, to_predict)
 
     print('============================================')
     print('Training NN...')
     bin_nn_clf = train_binary_nn(X, y)
+
+    print('============================================')
     print('Scoring NN...')
+    print('Total score on trained data:')
     score_classifier(bin_nn_clf, X, y)
+    print('Cross validated score of the classifier:')
     cross_val_score_classifier(bin_nn_clf, X, y)
 
     print('============================================')
@@ -166,16 +174,23 @@ if __name__ == "__main__":
     print('============================================')
     print('Training SVM...')
     mul_svc_clf = train_multiclass_svc(X, y)
-    print('Scoring SVM...')
-    score_classifier(mul_svc_clf, X, y)
-    cross_val_score_classifier(mul_svc_clf, X, y)
 
+    print('============================================')
+    print('Scoring SVM...')
+    print('Total score on trained data:')
+    score_classifier(mul_svc_clf, X, y)
+    print('Cross validated score of the classifier:')
+    cross_val_score_classifier(mul_svc_clf, X, y)
 
     print('============================================')
     print('Training NN...')
     mul_nn_clf = train_multiclass_nn(X, y)
+
+    print('============================================')
     print('Scoring NN...')
+    print('Total score on trained data:')
     score_classifier(mul_nn_clf, X, y)
+    print('Cross validated score of the classifier:')
     cross_val_score_classifier(mul_nn_clf, X, y)
 
     print('============================================')

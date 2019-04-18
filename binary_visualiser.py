@@ -28,6 +28,7 @@ if __name__ == '__main__':
         class_1_averages.append(current_c1_average/40)
         class_2_averages.append(current_c2_average/40)
 
+    plt.title('Average channel values for each class in the binary feature file')
     l1, = plt.plot(class_1_averages, label='Book')
     l2, = plt.plot(class_2_averages, label='Plastic Case')
     plt.legend(handles=[l1, l2])
